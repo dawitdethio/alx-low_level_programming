@@ -12,7 +12,7 @@ int main(void)
 
 	for (c = 0; c < 8; c++)
 	{
-		_putchar(rmias[c]);
+		_putchare(ermias[c]);
 	}
 	_putchar('\n');
 	return (0);
