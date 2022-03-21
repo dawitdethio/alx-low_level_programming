@@ -4,7 +4,7 @@
 * @str: string.
 * Return: nothing.
 */
-void _putchar(char *str)
+void _puts(char *str)
 	{
 int i;
 
