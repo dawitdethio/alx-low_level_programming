@@ -1,4 +1,4 @@
-#include "holberton.h"
+#include "main.h"
 /**
 * con - function that returns the natural square root of a number.
 * @i: integer.
