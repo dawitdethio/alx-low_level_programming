@@ -1,20 +1,22 @@
 #include "main.h"
 #include <stdlib.h>
+
 /**
-* free_grid - function that frees a 2D grid.
-* @grid: grid address.
-* @height: height.
-* Return: ...
-*/
+ * free_grid - frees a 2 dimensional grid from the heap.
+ * @grid: 2D array.
+ * @height: the number of rows.
+ *
+ * Return: nothing.
+ */
 void free_grid(int **grid, int height)
 {
-int i;
+	int i;
 
-i = 0;
-	while (i < height)
-	{
-	free(grid[i]);
+	if (grid == NULL || height == 0)
+		return;
+
+	for (i = 0; i < height; i++)
+		free(grid[i]);
+
 	free(grid);
-	i++;
-	}
 }
