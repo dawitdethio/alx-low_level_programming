@@ -1,35 +1,41 @@
 #include <stdio.h>
 #include <stdlib.h>
-/**
-* main - prints opcode of own main function
-* @argc: argument count
-* @argv: arg value
-* Return: int
-*/
 
+/**
+ * main - the starting function. Receives an argument.
+ * @argc: the number of arguments + 1
+ * @argv: an array of passed arguments including program's name
+ *
+ * Return: 0 on Success, else 1 or 2 depending on the failed condition
+ */
 int main(int argc, char *argv[])
 {
-int i, j;
-unsigned char *p;
+	int n_bytes, i;
+	char *arr_code;
 
 	if (argc != 2)
 	{
-	printf("Error\n");
-	exit(1);
-	}
-j = atoi(argv[1]);
-		if (j < 0)
-		{
 		printf("Error\n");
-		exit(2);
-		}
-p = (unsigned char *)main;
-i = 0;
-	if (j > 0)
-	{
-		while (i < (j - 1))
-		printf("%02hhx ", p[i++]);
-		printf("%hhx\n", p[i]);
+		return (1);
 	}
-return (0);
+
+	n_bytes = atoi(argv[1]);
+	if (n_bytes < 0)
+	{
+		printf("Error\n");
+		return (2);
+	}
+
+	arr_code = (char *)main;
+
+	for (i = 0; i < n_bytes; i++)
+	{
+		if (i == n_bytes - 1)
+		{
+			printf("%02hhx\n", arr_code[i]);
+			break;
+		}
+		printf("%02hhx ", arr_code[i]);
+	}
+	return (0);
 }
