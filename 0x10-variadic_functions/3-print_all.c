@@ -47,3 +47,4 @@ va_list ap;
 		}
 printf("\n");
 va_end(ap);
+}
