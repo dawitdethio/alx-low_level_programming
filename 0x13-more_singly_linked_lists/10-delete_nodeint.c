@@ -1,37 +1,47 @@
 #include "lists.h"
-#include <stdio.h>
-#include <stdlib.h>
+
 /**
-* delete_nodeint_at_index - function that deletes the node at index.
-* @head: pointer to pointer of list type of listint_t.
-* @index: position of where the node should be deleted.
-* Return: 1 if succeeded, -1 if it failed.
+* delete_nodeint_at_index - delete a node at a given position
+* @head: pointer to head pointer of linked list
+* @index: index to delete node
+* Return: 1 if succeeded, or -1 if failed
 */
 
 int delete_nodeint_at_index(listint_t **head, unsigned int index)
 {
-listint_t *h = *head, *tmp = NULL;
-unsigned int count = 0;
 
-	if ((*head) && count == index)
-	{
-		(*head) = h->next;
-		free(h);
-		return (1);
-	}
-	while (h)
-	{
-		if (count == index - 1)
-		{
-			tmp = h->next;
-			free(h->next);
-			h->next = tmp->next;
-			return (1);
-		}
-		h = h->next;
-		count++;
-		if (!h)
-			return (-1);
-	}
-	return (-1);
+unsigned int i = 0;
+listint_t *tmp, *tmp2;
+
+/* account for empty list */
+if (*head == NULL)
+return (-1);
+
+tmp = *head;
+
+/* account for deleting beginning node */
+if (index == 0)
+{
+*head = tmp->next;
+free(tmp);
+return (1);
+}
+
+/* iterate tmp to idx prior to idx we want to delete */
+while (i < (index - 1) && tmp != NULL)
+{
+tmp = tmp->next;
+i++;
+}
+
+/* account for idx out of range: don't delete and return */
+if (i != (index - 1) || tmp->next == NULL)
+return (-1);
+
+/* link prior idx before delete */
+tmp2 = tmp->next;
+tmp->next = (tmp->next)->next;
+free(tmp2);
+
+return (1);
 }
